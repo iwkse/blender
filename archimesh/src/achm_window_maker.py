@@ -562,6 +562,7 @@ def generate_rail_window(myframe, mp, mymesh):
     mywin_l.location.z = 0.025
 
     mywin_l.constraints.new('LIMIT_LOCATION')
+    mywin_l.constraints['Limit Location'].owner_space = 'LOCAL'
     mywin_l.constraints['Limit Location'].use_max_x = True
     mywin_l.constraints['Limit Location'].use_min_x = True
     mywin_l.constraints['Limit Location'].max_x = -0.01
@@ -583,6 +584,7 @@ def generate_rail_window(myframe, mp, mymesh):
     mywin_r.location.z = 0.025
     
     mywin_r.constraints.new('LIMIT_LOCATION')
+    mywin_r.constraints['Limit Location'].owner_space = 'LOCAL'
     mywin_r.constraints['Limit Location'].use_max_x = True
     mywin_r.constraints['Limit Location'].use_min_x = True
     mywin_r.constraints['Limit Location'].max_x = mywin_r.location.x
