@@ -560,6 +560,13 @@ def generate_rail_window(myframe, mp, mymesh):
     mywin_l.location.x = (-mp.width / 2) + 0.01
     mywin_l.location.y = p1 - 0.001
     mywin_l.location.z = 0.025
+
+    mywin_l.constraints.new('LIMIT_LOCATION')
+    mywin_l.constraints['Limit Location'].use_max_x = True
+    mywin_l.constraints['Limit Location'].use_min_x = True
+    mywin_l.constraints['Limit Location'].max_x = -0.01
+    mywin_l.constraints['Limit Location'].min_x = mywin_l.location.x
+
     # Window R
     mywin_r = create_rail_window_leaf("Window.R", "R",
                                       width, win_size, mp.height - 0.05,
@@ -574,6 +581,13 @@ def generate_rail_window(myframe, mp, mymesh):
     mywin_r.location.x = (mp.width / 2) - 0.01
     mywin_r.location.y = p2 - 0.001
     mywin_r.location.z = 0.025
+    
+    mywin_r.constraints.new('LIMIT_LOCATION')
+    mywin_r.constraints['Limit Location'].use_max_x = True
+    mywin_r.constraints['Limit Location'].use_min_x = True
+    mywin_r.constraints['Limit Location'].max_x = mywin_r.location.x
+    mywin_r.constraints['Limit Location'].min_x = 0.01
+
     # Sill
     if mp.sill:
         mysill = create_sill("Windows_Sill", mp.width,
@@ -1200,6 +1214,7 @@ def create_rail_window_leaf(objname, hand, sx, sy, sz, f, px, py, pz, mat, matda
     mywindow.location[0] = px
     mywindow.location[1] = py
     mywindow.location[2] = pz
+
     bpy.context.scene.objects.link(mywindow)
 
     mymesh.from_pydata(myvertex, [], myfaces)
